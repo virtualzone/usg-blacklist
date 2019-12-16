@@ -1,5 +1,9 @@
+FROM alpine:3.10 AS builder
+RUN cd /tmp && \
+    curl -L https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz | tar zxvf - -C . && mv qemu-3.0.0+resin-arm/qemu-aarch64-static .
+
 FROM arm64v8/alpine:3.10
-COPY qemu-aarch64-static /usr/bin/
+COPY --from=builder /tmp/qemu-aarch64-static /usr/bin/
 ENV MODE update
 ENV HOST 192.168.1.1
 ENV USER admin
