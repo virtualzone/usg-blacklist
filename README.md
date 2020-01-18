@@ -13,6 +13,8 @@ Based on and inspired by the great script at: https://github.com/brontide/usg-bl
 ## Preparing the USG
 1. Create an IPv4 firewall group named "Dynamic Threat List".
 1. Create firewall rules in WAN_LOCAL, WAN_OUT, WAN_IN to drop traffic from/to this group.
+1. Optional: Create an IPv6 firewall group named "Dynamic Threat List IPv6".
+1. Optional: Create firewall rules in WAN_LOCAL, WAN_OUT, WAN_IN to drop traffic from/to this group.
 1. Create an SSH key using ```ssh-keygen``` and install the public key in your UniFi SDN Controller under: Settings > Site > Device Authentication
 
 ## Updating the firewall rules
@@ -23,6 +25,7 @@ I recommend running this regularly (i.e. via a cronjob).
 ```
 docker run --rm \
     -e "MODE=update" \
+    -e "IPV6=true" \
     -e "HOST=10.10.1.1" \
     -e "USER=unifi-ssh-user" \
     -v ${PWD}/ssh-key:/root/ssh-key:ro \
@@ -33,6 +36,7 @@ docker run --rm \
 ```
 docker run --rm \
     -e "MODE=stats" \
+    -e "IPV6=true" \
     -e "HOST=10.10.1.1" \
     -e "USER=unifi-ssh-user" \
     -v ${PWD}/ssh-key:/root/ssh-key:ro \
