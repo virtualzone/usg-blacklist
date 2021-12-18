@@ -36,7 +36,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: {context}/Dockerfile.arm32v7
+        file: ./Dockerfile.arm32v7
         push: true
         tags: |
           virtualzone/usg-blacklist:arm32v7
@@ -44,7 +44,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: {context}/Dockerfile.arm32v8
+        file: ./Dockerfile.arm32v8
         push: true
         tags: |
           virtualzone/usg-blacklist:arm32v8
@@ -52,7 +52,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: {context}/Dockerfile.arm64v8
+        file: ./Dockerfile.arm64v8
         push: true
         tags: |
           virtualzone/usg-blacklist:arm64v8
